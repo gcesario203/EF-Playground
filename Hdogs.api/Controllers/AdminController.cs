@@ -11,14 +11,9 @@ namespace Hdogs.api.Controllers
     [ApiController]
     public class AdminController : BaseController<AdminRepository, AdminDTO, Admin, MySqlContext>
     {
-        private readonly DocumentTypeRepository _documentTypeRepo;
-        private readonly AuthDataRepository _authDataRepo;
-        public AdminController(AdminRepository repository,
-                               DocumentTypeRepository documentTypeRepo,
-                               AuthDataRepository authDataRepo) : base(repository)
+        public AdminController(AdminRepository repository)
+                               : base(repository)
         {
-            _documentTypeRepo = documentTypeRepo;
-            _authDataRepo = authDataRepo;
         }
     }
 }

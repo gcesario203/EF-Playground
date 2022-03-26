@@ -10,8 +10,8 @@ namespace Hdogs.api.Data.DataTransferObject
         public ServiceStatusEnum Status { get; set; }
         public decimal Price { get; set; }
 
-        public long Pet { get; set; }
-        public long Client { get; set; }
-        public long Monitor { get; set; }
+        public PetDTO Pet { get; set; }
+        public ClientDTO Client { get; set; }
+        public MonitorDTO Monitor { get; set; }
     }
 }

@@ -23,19 +23,19 @@ namespace Library.Controllers.Base
         [HttpGet]
         public virtual async Task<ActionResult<IEnumerable<V>>> FindAll()
         {
-            var products = await _repository.FindAll();
+            var items = await _repository.FindAll();
 
-            return Ok(products);
+            return Ok(items);
         }
 
         [HttpGet("{id}")]
         public virtual async Task<ActionResult<V>> FindById(long id)
         {
-            var product = await _repository.FindById(id);
+            var item = await _repository.FindById(id);
 
-            if (product == null) return NotFound();
+            if (item == null) return NotFound();
 
-            return Ok(product);
+            return Ok(item);
         }
 
         [HttpPost]
@@ -43,9 +43,9 @@ namespace Library.Controllers.Base
         {
             if (vo == null) return BadRequest();
 
-            var product = await _repository.Create(vo);
+            var item = await _repository.Create(vo);
 
-            return Ok(product);
+            return Ok(item);
         }
 
         [HttpPut]
@@ -53,9 +53,9 @@ namespace Library.Controllers.Base
         {
             if (vo == null) return BadRequest();
 
-            var product = await _repository.Update(vo);
+            var item = await _repository.Update(vo);
 
-            return Ok(product);
+            return Ok(item);
         }
 
         [HttpDelete("{id}")]

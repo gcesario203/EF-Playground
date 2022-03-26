@@ -21,8 +21,8 @@ namespace Library.Repositories.Base
 
         public virtual async Task<IEnumerable<T>> FindAll()
         {
-            var products = await _context.GetDbSetByType<G>().ToListAsync();
-            return _mapper.Map<List<T>>(products);
+            var items = await _context.GetDbSetByType<G>().ToListAsync();
+            return _mapper.Map<List<T>>(items);
         }
 
         public virtual async Task<T> FindById(long id)
@@ -31,9 +31,9 @@ namespace Library.Repositories.Base
         }
         public virtual async Task<T> Create(T vo)
         {
-            var product = _mapper.Map<G>(vo);
+            var item = _mapper.Map<G>(vo);
 
-            _context.GetDbSetByType<G>().Add(product);
+            _context.GetDbSetByType<G>().Add(item);
 
             await _context.SaveChangesAsync();
 
@@ -42,9 +42,9 @@ namespace Library.Repositories.Base
 
         public virtual async Task<T> Update(T vo)
         {
-            var product = _mapper.Map<G>(vo);
+            var item = _mapper.Map<G>(vo);
 
-            _context.GetDbSetByType<G>().Update(product);
+            _context.GetDbSetByType<G>().Update(item);
 
             await _context.SaveChangesAsync();
 
@@ -55,12 +55,12 @@ namespace Library.Repositories.Base
         {
             try
             {
-                var product = await _context.GetDbSetByType<G>().Where(x => x.Id == id).FirstOrDefaultAsync();
+                var item = await _context.GetDbSetByType<G>().Where(x => x.Id == id).FirstOrDefaultAsync();
                 
 
-                if(product == null) return false;
+                if(item == null) return false;
 
-                _context.GetDbSetByType<G>().Remove(product);
+                _context.GetDbSetByType<G>().Remove(item);
 
                 await _context.SaveChangesAsync();
 

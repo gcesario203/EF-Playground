@@ -8,7 +8,7 @@ namespace Hdogs.api.Data.DataTransferObject
         public string Name { get; set; }
         public PetSizeEnum Size { get; set; }
         public PetTypeEnum Type { get; set; }
-        public long Client { get; set; }
-        public virtual ICollection<long> Services { get; set; }
+        public ClientDTO Client { get; set; }
+        public virtual ICollection<ServiceDTO> Services { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace Hdogs.api.Data.DataTransferObject
 {
     public class ClientDTO: BasePersonDTO
     {
-        public virtual ICollection<long> Pets { get; set; }
-        public virtual ICollection<long> Services { get; set; }
+        public virtual ICollection<PetDTO> Pets { get; set; }
+        public virtual ICollection<ServiceDTO> Services { get; set; }
     }
 }
