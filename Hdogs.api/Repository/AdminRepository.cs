@@ -45,7 +45,7 @@ namespace Hdogs.api.Repository
             return _mapper.Map<AdminDTO>(admin);
         }
 
-        private async Task<(AuthDataDTO auth, IEnumerable<DocumentTypeDTO> documents)> ResolveAdminJoins(params Admin[] admins)
+        private async Task<(IEnumerable<AuthDataDTO> auth, IEnumerable<DocumentTypeDTO> documents)> ResolveAdminJoins(params Admin[] admins)
         {
             var auth = await _authDataRepo
                     .FindByFilter(x => admins.ToList()
@@ -57,7 +57,7 @@ namespace Hdogs.api.Repository
                                                         .Any(l => l.Documents
                                                         .Contains(x)));
 
-            return (auth.FirstOrDefault() ?? new AuthDataDTO(), docs);
+            return (auth, docs);
         }
     }
 }
