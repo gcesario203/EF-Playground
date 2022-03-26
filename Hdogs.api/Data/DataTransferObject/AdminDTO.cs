@@ -5,7 +5,7 @@ namespace Hdogs.api.Data.DataTransferObject
 {
     public class AdminDTO : BasePersonDTO
     {
-        public virtual ICollection<MonitorDTO> Monitors { get; set; }
+        // public virtual ICollection<MonitorDTO> Monitors { get; set; }
 
     }
 }

@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Library.Models;
 using Library.Repositories.Interfaces;
 using Library.Contexts;
+using System.Linq.Expressions;
 
 namespace Library.Repositories.Base
 {
-    public abstract class BaseRepository<T, G, V> : IBaseRepository<T>
+    /// <summary>
+    ///  Classe base dos repositórios
+    /// </summary>
+    public abstract class BaseRepository<T, G, V> : IBaseRepository<T, G>
     where G : BaseEntity
     where V : BaseDBContext<V>
     {
@@ -56,9 +60,9 @@ namespace Library.Repositories.Base
             try
             {
                 var item = await _context.GetDbSetByType<G>().Where(x => x.Id == id).FirstOrDefaultAsync();
-                
 
-                if(item == null) return false;
+
+                if (item == null) return false;
 
                 _context.GetDbSetByType<G>().Remove(item);
 
@@ -70,6 +74,12 @@ namespace Library.Repositories.Base
             {
                 return false;
             }
+        }
+
+        public async Task<IEnumerable<T>> FindByFilter(Expression<Func<G, bool>> filter)
+        {
+            var items = await _context.GetDbSetByType<G>().ToListAsync();
+            return _mapper.Map<List<T>>(items);
         }
     }
 }

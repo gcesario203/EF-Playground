@@ -1,8 +1,11 @@
+using System.Linq.Expressions;
+
 namespace Library.Repositories.Interfaces
 {
-    public interface IBaseRepository<T>
+    public interface IBaseRepository<T, G>
     {
         Task<IEnumerable<T>> FindAll();
+        Task<IEnumerable<T>> FindByFilter(Expression<Func<G, bool>> filter);
 
         Task<T> FindById(long id);
 
